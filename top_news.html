@@ -1,0 +1,93 @@
+<div style="font-size:24px;"> Pick Up News </div>
+<div id="index_newsbox_main" style="height: 240px; margin:5px; background-color:#AAA;">
+</div>
+<!--
+	<a href="#" style="position:relative; display:block; text-decoration:none; background-color: #DDD;">
+		<div> 2017.05.20</div>
+		<div> サイトデザインをリニューアルしました！</div>
+	</a>
+	<a href="#" style="position:relative; display:block; text-decoration:none; background-color: #CCC;">
+		<div> 2017.05.13</div>
+		<div> ABOUTページ更新のお知らせ</div>
+	</a>
+	<a href="#" style="position:relative; display:block; text-decoration:none; background-color: #DDD;">
+		<div> 2017.05.06</div>
+		<div> GALLERYページ更新のお知らせ</div>
+	</a>
+	<a href="#" style="position:relative; display:block; text-decoration:none; background-color: #CCC;">
+		<div> 2017.04.30</div>
+		<div> LOL部門メンバー募集のお知らせ</div>
+	</a>
+	<a href="#" style="position:relative; display:block; text-decoration:none; background-color: #DDD;">
+		<div> 2016.03.27</div>
+		<div> お知らせお知らせお知らせ１</div>
+	</a>
+-->
+
+<script>
+var category = [
+	{type:"News",	bgColor:"#C5B4E3",fontColor:"#444"},
+	{type:"Update",	bgColor:"#9FAEE5",fontColor:"#444"},
+];
+//category,link,date,content
+var indexes = [
+	[ 1,	"2019/10/31",	"news001",	"webページをSSL化いたしました！"],
+	[ 1,	"2019/10/25",	"news001",	"CONTACTページを更新いたしました！"],
+	[ 0,	"2019/09/10",	"news001",	"WEBプッシュ通知を実装いたしました！"],
+	[ 1,	"2019/02/13",	"news001",	"トップページを更新いたしました！"],
+	[ 1,	"2017/05/20",	"news001",	"サイトデザインをリニューアルいたしました！"],
+	[ 0,	"2016/03/27",	"news001",	"ウェブサイトをお引越しいたしました！"],
+];
+
+for(var i=0,len=indexes.length; i<len; i++)
+{
+	//コンテナ
+	var newsbox_main_child = document.createElement("div");
+	newsbox_main_child.id = "newsbox_main_child_"+i;
+	newsbox_main_child.style.position = "relative";
+	newsbox_main_child.style.backgroundColor = ["#CCC","#DDD"][i%2];
+	newsbox_main_child.style.height = (240/6)+"px";
+	newsbox_main_child.style.cursor = "pointer";
+	newsbox_main_child.indexes = indexes[i];
+	newsbox_main_child.addEventListener("click",function(e){
+		console.log("e.target");
+		window.location.href = "#";
+//		window.location.href = e.target.indexes[1];
+	});
+	document.getElementById("index_newsbox_main").appendChild(newsbox_main_child);
+	
+	//アイコン
+	var newsbox_main_child_icon= document.createElement("div");
+	newsbox_main_child_icon.id = "newsbox_main_child_icon_"+i;
+	newsbox_main_child_icon.innerHTML = category[indexes[i][0]].type;
+	newsbox_main_child_icon.style.position = "absolute";
+	newsbox_main_child_icon.style.backgroundColor = category[indexes[i][0]].bgColor;
+	newsbox_main_child_icon.style.color = category[indexes[i][0]].fontColor;
+	newsbox_main_child_icon.style.width = "80px";
+	newsbox_main_child_icon.style.height = "30px";
+	newsbox_main_child_icon.style.margin = "5px 10px";
+	newsbox_main_child_icon.style.borderRadius = "15px";
+	newsbox_main_child_icon.style.fontSize = "18px";
+	newsbox_main_child_icon.style.textAlign = "center";
+	document.getElementById("newsbox_main_child_"+i).appendChild(newsbox_main_child_icon);
+	
+	//日付
+	var newsbox_main_child_date= document.createElement("div");
+	newsbox_main_child_date.id = "newsbox_main_child_date_"+i;
+	newsbox_main_child_date.innerHTML = indexes[i][1];
+	newsbox_main_child_date.style.position = "absolute";
+	newsbox_main_child_date.style.margin = "8px 120px";
+	newsbox_main_child_date.style.fontSize = "16px";
+	document.getElementById("newsbox_main_child_"+i).appendChild(newsbox_main_child_date);
+	
+	//本体
+	var newsbox_main_child_content = document.createElement("div");
+	newsbox_main_child_content.id = "newsbox_main_child_content_"+i;
+	newsbox_main_child_content.innerHTML = indexes[i][3];
+	newsbox_main_child_content.style.position = "absolute";
+	newsbox_main_child_content.style.margin = "8px 250px";
+	newsbox_main_child_content.style.fontSize = "16px";
+	document.getElementById("newsbox_main_child_"+i).appendChild(newsbox_main_child_content);
+}
+
+</script>

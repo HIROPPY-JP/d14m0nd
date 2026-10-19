@@ -1,0 +1,207 @@
+<html>
+
+<head>
+<title>文字が回転するよ</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no, initial-scale=1">
+</head>
+
+<body>
+
+<div id="main_area" style="position:absolute; width:300px;height:300px; text-align:center; border:1px solid;">
+	<div id="mozi_area" style="position:absolute; margin:auto; top:0; left:0; right:0; bottom:0; height: 50px; font-size:50px; ">
+		mozi
+	</div>
+</div>
+
+
+<div id="btn_area" style="position:absolute; top:320px" >
+
+<div>
+<input id="input_mozi" value="mozi"></button>
+</div>
+
+<div>
+<button id="xmm"> << </button>
+<button id="xm"> < </button>
+<div style="display:inline-block; width:80px; text-align:center;">x = <span id="xn">0</span></div>
+<button id="xp"> > </button>
+<button id="xpp"> >> </button>
+<button id="xr"> rotate </button>
+</div>
+
+<div>
+<button id="ymm"> << </button>
+<button id="ym"> < </button>
+<div style="display:inline-block; width:80px; text-align:center;">y = <span id="yn">0</span></div>
+<button id="yp"> > </button>
+<button id="ypp"> >> </button>
+<button id="yr"> rotate </button>
+</div>
+
+<div>
+<button id="zmm"> << </button>
+<button id="zm"> < </button>
+<div style="display:inline-block; width:80px; text-align:center;">z = <span id="zn">0</span></div>
+<button id="zp"> > </button>
+<button id="zpp"> >> </button>
+<button id="zr"> rotate </button>
+</div>
+
+<div>
+<button id="smm"> << </button>
+<button id="sm"> < </button>
+<div style="display:inline-block; width:80px; text-align:center;">s = <span id="sn">50</span></div>
+<button id="sp"> > </button>
+<button id="spp"> >> </button>
+</div>
+
+</div>
+
+<script>
+
+/*
+おい、そこのお前！
+ソースみるんじゃねえ！！<@><@>
+
+*/
+
+
+//初期値
+var mozi = {
+	m:"mozi",
+	x:0,
+	y:0,
+	z:0,
+	s:50,
+	xr:0,
+	yr:0,
+	zr:0,
+};
+
+//増減量
+var setting = {
+	"mm" : -30,
+	"m"  :  -1,
+	"p"  :   1,
+	"pp" :  30,
+};
+
+//回転を実行
+function execTransform()
+{
+	//回転
+	var hoge = "rotateX( "+mozi.x+"deg ) rotateY( "+mozi.y+"deg ) rotate( "+mozi.z+"deg ) "
+	window.document.getElementById("mozi_area").style.transform = hoge;
+	window.document.getElementById("xn").innerHTML = mozi.x;
+	window.document.getElementById("yn").innerHTML = mozi.y;
+	window.document.getElementById("zn").innerHTML = mozi.z;
+	
+	//サイズ変更
+	window.document.getElementById("mozi_area").style.height = mozi.s+"px";
+	window.document.getElementById("mozi_area").style.fontSize = mozi.s+"px";
+	window.document.getElementById("sn").innerHTML = mozi.s;
+	
+}
+
+//種類
+var types = [
+	["x","y","z"],
+	["mm","m","p","pp"]
+];
+
+for( var i=0; i<types[0].length; i++)
+{
+	var a = types[0][i];
+	for( var j=0; j<types[1].length; j++)
+	{
+		var b = types[1][j];
+		
+		//回転ボタンのイベントリスナ登録
+		window.document.getElementById(a + b).onclick = function(e)
+		{
+			var a = (e.target.id).slice(0,1);
+			var b = (e.target.id).slice(1,3);
+			console.log(a,b);
+			
+			mozi[a] += setting[b];
+			if( mozi[a] < 0 ) mozi[a] += 360;
+			if( 360 <= mozi[a] ) mozi[a] -= 360;
+			execTransform();
+		};
+	}
+	
+	//繰り返しボタンのイベントリスナ登録
+	window.document.getElementById(a + "r").onclick = function(e)
+	{
+		var a = (e.target.id).slice(0,1);
+		mozi[a + "r"] ^= 1;
+	};
+	
+}
+
+for( var j=0; j<types[1].length; j++)
+{
+	var a = "s";
+	var b = types[1][j];
+	
+	//拡大ボタンのイベントリスナ登録
+	window.document.getElementById(a + b).onclick = function(e)
+	{
+		var a = (e.target.id).slice(0,1);
+		var b = (e.target.id).slice(1,3);
+		mozi[a] += setting[b];
+		execTransform();
+	}
+}
+
+//文字入力のイベントリスナ登録
+window.document.getElementById("input_mozi").oninput = function(e)
+{
+	mozi.m = e.target.value;
+	window.document.getElementById("mozi_area").innerHTML = mozi.m;
+}
+
+//毎フレーム行う処理はここ
+function update()
+{
+	console.log("!");
+	
+	var isupdate = false;
+	if( mozi.xr%2==1 )
+	{
+		mozi.x += 10;
+		if( 360 <= mozi.x ) mozi.x -= 360;
+		isupdate = true;
+	}
+	if( mozi.yr%2==1 )
+	{
+		mozi.y += 10;
+		if( 360 <= mozi.y ) mozi.y -= 360;
+		isupdate = true;
+	}
+	if( mozi.zr%2==1 )
+	{
+		mozi.z += 10;
+		if( 360 <= mozi.z ) mozi.z -= 360;
+		isupdate = true;
+	}
+	if( isupdate == true )
+	{
+		execTransform();
+	}
+}
+
+function mainLoop(event)
+{
+	update();
+	requestAnimationFrame( mainLoop );
+}
+mainLoop();
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="../web/jquery-1.12.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../style.css">
+<script type="text/javascript">
+$(function(){ $("#index_top_menu").load("../top_menu.html"); })
+</script>
+
+<!-- jsロード -->
+<?php
+function IncludeJs($filename)
+{
+	if(file_exists($filename))
+	{
+		echo '<script type="text/javascript" src="'.$filename.'?ver=';
+		echo date('YmdHis', filemtime($filename));
+		echo '"></script>';
+		echo "\n";
+	}
+}
+
+IncludeJs( "memberInfo.js" );
+IncludeJs( "memberInit.js" );
+
+?>
+<!-- /jsロード -->
+
+<title>D14M0ND</title>
+
+<style>
+#member_title {
+	position: absolute;
+	width:200px;
+	height:50px;
+	top:20px;
+	left:20px;
+	text-align:left;
+}
+#member_sort {
+	position: absolute;
+	width:300px;
+	height:50px;
+	top:80px;
+	left:20px;
+	text-align:left;
+	background-color: #AAA;
+}
+#member_main {
+	position: absolute;
+	width:900px;
+	height:1200px;
+	top:150px;
+	left:40px;
+	padding:0px 10px;
+	text-align:left;
+	background-color: #E0E0E0;
+}
+.member_main_column {
+	position: relative;
+	display: block;
+	width:140px;
+	height:190px;
+	margin: 5px;
+	float:left;
+	text-align:left;
+	background-color: #CCC;
+}
+.member_gameicon {
+	width:20px;  height:20px; border-radius: 6px;
+}
+.member_socialicon {
+	 height:45px; border-radius: 6px; cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+
+<div id="top_div">
+</div>
+
+<div id="main_div">
+	
+	<!-- TOP_MENU -->
+	<div id="index_top_menu">
+	</div>
+
+	<!-- MAIN_CONTENT -->
+	<div id="index_main_content">
+		
+		<!-- Title(MEMBER) -->
+		<div id="member_title">
+			<img src="icon/member.png" style="height:50px;" />
+		</div>
+		
+		<!-- Sort -->
+		<div id="member_sort">
+		編集中..ここにはソート機能を実装予定
+		</div>
+		
+		<!-- Main -->
+		<div id="member_main">
+			
+		</div>
+		
+		
+		<!-- Footer -->
+		<div id="index_footer">
+			<p style="margin-top: 8px;">Eternal ties, Chastity, and Fortitude. Clan D14M0ND Forever. <br/>
+			this blog edit @hiroppy_</p>
+		</div>
+	</div>
+	
+	
+</div>
+
+<!-- 動的にメンバー表示 -->
+<script> memberInit(); </script>
+
+</body>
+</html>

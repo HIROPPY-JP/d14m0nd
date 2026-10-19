@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+<title>FizzBuzz</title>
+</head>
+<body style="position:fixed;user-select: none; /* CSS3 */
+-moz-user-select: none; /* Firefox */
+-webkit-user-select: none; /* Safari、Chromeなど */
+-ms-user-select: none; /* IE10かららしい */">
+<script>
+var count = 0;
+
+function fizzBuzz()
+{
+	if(count%15==0)		return "fizzbuzz";
+	else if(count%3==0)	return "fizz";
+	else if(count%5==0)	return "buzz";
+	else				return String(count);
+}
+
+function countUp()
+{
+	count++;
+	console.log(count);
+	var div_num = document.getElementById("number");
+	if(div_num)
+	{
+		div_num.innerHTML = fizzBuzz();
+	}
+	//setTimeout( countUp(), 10000 );
+}
+
+onclick = countUp;
+ontouchstart = countUp;
+
+</script>
+<div id="number" style="font-size:50px;font-family: Impact ,sans-serif, Arial;">...</div>
+<div style="border: solid 1px; width:50px; text-align:center; margin-top:10px;" onclick="window.close()">END</div>
+<a href="https://ja.wikipedia.org/wiki/Fizz_Buzz" target="_blank" style=" position: fixed; margin-top:20px;">FizzBuzz - Wikipedia</a>
+</body>
+</html>

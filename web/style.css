@@ -22,6 +22,17 @@ body
 	width: 1000px;
 	margin: 0 auto;
 }
+#index_top_menu
+{
+	position:fixed;
+	width:1000px;
+	height:50px;
+	top:0;
+	z-index:999;
+	background-color: #AAAAAA;
+	user-select: none;
+	-webkit-user-select: none; 
+}
 #index_left_menu
 {
 	position:fixed;

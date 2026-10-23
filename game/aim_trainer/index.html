@@ -1,0 +1,86 @@
+<!-- jQuery .load() で読み込むため、HTMLフラグメントとして構成しています。 -->
+<link rel="stylesheet" href="../game/aim_trainer/style.css">
+  <main class="app">
+<section class="hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> PRECISION · SPEED · CONTROL</div>
+      <h1>狙って、撃て。<br><span>反射神経を研ぎ澄ませ。</span></h1>
+      <p class="intro">30秒で円形のターゲットを何個撃ち抜ける？ 小さいターゲットほど高得点。マウスの精度とスピードを試そう。</p>
+    </section>
+
+    <section class="hud" aria-label="ゲームステータス">
+      <div class="hud-stat score-stat">
+        <span class="hud-label">SCORE</span>
+        <strong id="score">0000</strong>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-label">TIME LEFT</span>
+        <strong class="time-value"><span id="time">30.0</span><small> SEC</small></strong>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-label">ACCURACY</span>
+        <strong id="accuracy">100<small>%</small></strong>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-label">HIT / MISS</span>
+        <strong><span id="hits">0</span><small> / </small><span id="misses">0</span></strong>
+      </div>
+    </section>
+
+    <section class="game-shell">
+      <div class="game-bar">
+        <div class="game-label"><span class="target-icon">●</span><span id="gameStatus">READY TO ENGAGE</span></div>
+        <div class="game-hint"><kbd>クリック</kbd> で射撃 <span class="hint-sep">·</span> <kbd>R</kbd> リスタート</div>
+      </div>
+      <div id="arena" class="arena" tabindex="0" aria-label="エイム練習エリア">
+        <div class="arena-grid"></div>
+        <button class="arena-center start-prompt" id="startPrompt" type="button" aria-label="ゲーム開始">
+          <span class="crosshair"><i></i><b></b></span>
+          <span class="ready-title">READY?</span>
+          <span class="ready-subtitle">START THE SESSION</span>
+          <span class="start-action">クリックして開始 <span aria-hidden="true">↗</span></span>
+        </button>
+        <div class="arena-corner corner-tl"></div><div class="arena-corner corner-tr"></div>
+        <div class="arena-corner corner-bl"></div><div class="arena-corner corner-br"></div>
+        <div id="targets" class="targets"></div>
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div id="countdown" class="countdown hidden"></div>
+        <div id="resultOverlay" class="result-overlay hidden">
+          <div class="result-card">
+            <div class="result-kicker">SESSION COMPLETE</div>
+            <div class="result-title">NICE SHOOTING.</div>
+            <p class="result-message">セッション終了。結果を確認してから、次のラウンドへ進もう。</p>
+            <div class="result-score" id="finalScore">0</div>
+            <div class="result-caption">POINTS EARNED</div>
+            <div class="result-grid">
+              <div><span>HITS</span><b id="finalHits">0</b></div>
+              <div><span>ACCURACY</span><b id="finalAccuracy">0%</b></div>
+              <div><span>AVG. REACTION</span><b id="finalReaction">—</b></div>
+            </div>
+            <button id="againBtn" class="primary-btn">次のラウンドを開始 <span>↗</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="game-footer">
+        <div class="legend"><span class="legend-dot"></span> TARGETS ACTIVE <span class="footer-sep">/</span> <span id="targetCount">0</span> ON SCREEN</div>
+        <div class="progress-track"><div id="timeProgress" class="progress-fill"></div></div>
+      </div>
+    </section>
+
+    <section class="bottom-row">
+      <div class="tips-panel">
+        <div class="panel-icon">⌖</div>
+        <div><h2>TRAINING TIP</h2><p>小さい円は高得点。焦って撃つより、正確に狙いを定めよう。</p></div>
+      </div>
+      <div class="controls-panel">
+        <label for="difficulty">難易度</label>
+        <select id="difficulty">
+          <option value="normal">NORMAL</option>
+          <option value="hard">HARD</option>
+          <option value="expert">EXPERT</option>
+        </select>
+        <span class="control-note">ゲーム開始前に変更できます</span>
+      </div>
+    </section>
+    <footer class="page-footer"><span>TRIANGLE AIM TRAINER</span><span>BUILT FOR YOUR NEXT HEADSHOT.</span></footer>
+  </main>
+<script src="../game/aim_trainer/game.js"></script>

@@ -1,0 +1,100 @@
+/* Styles are scoped to the embedded game. Do not style the host page. */
+#game_aim_trainer {
+  --bg:#080c17; --panel:#101728; --panel2:#121d30; --line:#263249;
+  --text:#eef4ff; --muted:#8998b4; --cyan:#4de3d2; --blue:#668bff;
+  box-sizing:border-box; display:block; width:100%; max-width:100%; height:780px;
+  overflow:hidden; background:var(--bg); color:var(--text);
+  font-family:Inter,"Segoe UI","Noto Sans JP",sans-serif; font-size:14px; line-height:1.5;
+}
+#game_aim_trainer *, #game_aim_trainer *::before, #game_aim_trainer *::after { box-sizing:border-box; }
+#game_aim_trainer .app { height:100%; min-height:0; padding:12px 20px 10px; display:flex; flex-direction:column; gap:10px; background:var(--bg); color:var(--text); }
+#game_aim_trainer .hero { flex:0 0 auto; text-align:center; position:relative; padding:0 0 2px; }
+#game_aim_trainer .eyebrow { display:flex; align-items:center; gap:8px; color:var(--cyan); font-size:10px; font-weight:800; letter-spacing:2px; text-align:left; margin-bottom:5px; }
+#game_aim_trainer .eyebrow-line { display:inline-block; width:24px; height:1px; background:var(--cyan); }
+#game_aim_trainer h1 { margin:4px 0 6px; color:#f4f7ff; font-size:clamp(22px,2.7vw,32px); line-height:1.25; font-weight:900; letter-spacing:.02em; }
+#game_aim_trainer h1 span { color:#8ca6d6; }
+#game_aim_trainer .intro { margin:0 auto; max-width:720px; color:#9aaccb; font-size:12px; line-height:1.6; }
+#game_aim_trainer .hud { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); flex:0 0 72px; border:1px solid var(--line); border-radius:10px 10px 0 0; overflow:hidden; background:var(--panel); }
+#game_aim_trainer .hud-stat { min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; border-right:1px solid var(--line); gap:1px; }
+#game_aim_trainer .hud-stat:last-child { border-right:0; }
+#game_aim_trainer .hud-label { color:#8da3c9; font-size:9px; letter-spacing:1.8px; font-weight:800; }
+#game_aim_trainer .hud-stat strong { color:#f4f7ff; font-size:24px; line-height:1.25; font-weight:900; font-variant-numeric:tabular-nums; }
+#game_aim_trainer .score-stat strong { color:var(--cyan); }
+#game_aim_trainer .hud-stat small { color:#a3b4d1; font-size:10px; font-weight:700; }
+#game_aim_trainer .time-value { display:flex; align-items:baseline; gap:4px; }
+#game_aim_trainer .game-shell { flex:1 1 auto; min-height:0; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:0 0 10px 10px; overflow:hidden; background:var(--panel2); }
+#game_aim_trainer .game-bar { flex:0 0 38px; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:0 16px; background:#131d30; border-bottom:1px solid var(--line); }
+#game_aim_trainer .game-label { display:flex; align-items:center; gap:10px; color:#f3f6ff; font-size:10px; font-weight:900; letter-spacing:1.2px; }
+#game_aim_trainer .target-icon { color:var(--cyan); font-size:14px; }
+#game_aim_trainer .game-hint { color:#8fa2c4; font-size:10px; white-space:nowrap; }
+#game_aim_trainer kbd { border:1px solid #344762; border-radius:4px; padding:2px 5px; color:#d9e6ff; background:#17243a; font:inherit; }
+#game_aim_trainer .hint-sep { padding:0 7px; color:#526581; }
+#game_aim_trainer .arena { position:relative; isolation:isolate; flex:1 1 auto; min-height:0; overflow:hidden; cursor:crosshair; background-color:#080e1b; }
+#game_aim_trainer .arena-grid { position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(rgba(71,104,151,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(71,104,151,.09) 1px,transparent 1px); background-size:32px 32px; }
+#game_aim_trainer .arena-corner { position:absolute; z-index:1; width:18px; height:18px; border-color:#27bdb6; border-style:solid; opacity:.85; pointer-events:none; }
+#game_aim_trainer .corner-tl { top:12px; left:12px; border-width:1px 0 0 1px; } #game_aim_trainer .corner-tr { top:12px; right:12px; border-width:1px 1px 0 0; }
+#game_aim_trainer .corner-bl { bottom:12px; left:12px; border-width:0 0 1px 1px; } #game_aim_trainer .corner-br { bottom:12px; right:12px; border-width:0 1px 1px 0; }
+#game_aim_trainer .targets { position:absolute; inset:0; }
+#game_aim_trainer .target { position:absolute; display:block; width:40px; height:40px; min-width:0; min-height:0; padding:0 !important; margin:0 !important; border:0 !important; border-radius:50%; outline:0; appearance:none; -webkit-appearance:none; cursor:crosshair; box-shadow:0 0 0 4px rgba(77,227,210,.10),0 0 22px rgba(77,227,210,.25); background:transparent !important; transform:translate(-50%,-50%); transition:opacity .18s ease, transform .18s ease; line-height:0; overflow:visible; }
+#game_aim_trainer .target svg { display:block; width:100%; height:100%; overflow:visible; pointer-events:none; }
+#game_aim_trainer .target .target-fill { fill:rgba(77,227,210,.16); stroke:#eaffff; stroke-width:2; }
+#game_aim_trainer .target .target-inner { fill:#07111d; stroke:#4de3d2; stroke-width:1.5; }
+#game_aim_trainer .target.hit { pointer-events:none; animation:targetHit .14s ease-out forwards; box-shadow:none; }
+@keyframes targetHit { 0% { opacity:1; } 100% { opacity:0; } }
+#game_aim_trainer .arena-center { position:absolute; z-index:2; left:50%; top:50%; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; width:150px; min-height:100px; padding:8px; border:0; color:#eef4ff; background:transparent; cursor:pointer; text-align:center; }
+#game_aim_trainer .crosshair { position:relative; display:block; width:28px; height:28px; margin-bottom:8px; }
+#game_aim_trainer .crosshair::before,#game_aim_trainer .crosshair::after { content:""; position:absolute; background:var(--cyan); }
+#game_aim_trainer .crosshair::before { width:28px; height:1px; left:0; top:13px; } #game_aim_trainer .crosshair::after { height:28px; width:1px; left:13px; top:0; }
+#game_aim_trainer .crosshair i { position:absolute; width:6px; height:6px; border:1px solid var(--cyan); border-radius:50%; left:11px; top:11px; }
+#game_aim_trainer .ready-title,#game_aim_trainer .ready-subtitle { font-size:9px; line-height:1.4; font-weight:800; letter-spacing:1.2px; }
+#game_aim_trainer .start-action { color:var(--cyan); font-size:10px; font-weight:800; white-space:nowrap; }
+#game_aim_trainer .arena-center:hover .start-action { color:#fff; }
+#game_aim_trainer .feedback { position:absolute; z-index:3; inset:0; overflow:hidden; pointer-events:none; font-weight:900; color:var(--cyan); text-shadow:0 2px 8px #000; }
+#game_aim_trainer .float-score { position:absolute; transform:translate(-50%,-50%); white-space:nowrap; font-size:15px; line-height:1; animation:aimFloatUp .6s ease-out forwards; }
+#game_aim_trainer .float-score.miss { color:#ff7185; }
+@keyframes aimFloatUp { 0% { opacity:1; transform:translate(-50%,-35%); } 100% { opacity:0; transform:translate(-50%,-150%); } }
+#game_aim_trainer .countdown { position:absolute; z-index:5; inset:0; display:grid; place-items:center; font-size:72px; font-weight:900; color:#fff; background:rgba(4,9,18,.35); }
+#game_aim_trainer .hidden { display:none !important; }
+#game_aim_trainer .result-overlay { position:absolute; z-index:6; inset:0; display:grid; place-items:center; padding:16px; background:rgba(5,9,18,.86); }
+#game_aim_trainer .result-card { width:min(420px,100%); padding:22px; border:1px solid #34445f; border-radius:12px; background:#111a2b; text-align:center; box-shadow:0 20px 70px rgba(0,0,0,.4); }
+#game_aim_trainer .result-kicker { color:var(--cyan); font-size:10px; font-weight:900; letter-spacing:2px; }
+#game_aim_trainer .result-title { margin-top:4px; font-size:24px; font-weight:900; }
+#game_aim_trainer .result-message { margin:8px 0 12px; color:#aab8d0; font-size:12px; }
+#game_aim_trainer .result-score { font-size:42px; line-height:1.1; font-weight:900; color:var(--cyan); }
+#game_aim_trainer .result-caption { color:#8fa2c4; font-size:9px; font-weight:800; letter-spacing:2px; }
+#game_aim_trainer .result-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:16px 0; }
+#game_aim_trainer .result-grid div { display:flex; flex-direction:column; gap:4px; padding:8px 2px; background:#0c1321; border:1px solid var(--line); border-radius:6px; }
+#game_aim_trainer .result-grid span { color:#8fa2c4; font-size:9px; } #game_aim_trainer .result-grid b { font-size:14px; }
+#game_aim_trainer .primary-btn { border:1px solid #3bddd0; border-radius:6px; padding:10px 16px; background:var(--cyan); color:#07121b; font:inherit; font-weight:900; cursor:pointer; }
+#game_aim_trainer .primary-btn:hover { background:#a1fff2; }
+#game_aim_trainer .game-footer { flex:0 0 28px; display:flex; align-items:center; gap:14px; padding:0 16px; border-top:1px solid var(--line); background:#101728; }
+#game_aim_trainer .legend { color:#8fa2c4; font-size:8px; letter-spacing:1.1px; font-weight:800; white-space:nowrap; }
+#game_aim_trainer .legend-dot { display:inline-block; width:5px; height:5px; margin-right:6px; border-radius:50%; background:var(--cyan); vertical-align:middle; }
+#game_aim_trainer .footer-sep { margin:0 5px; }
+#game_aim_trainer .progress-track { position:relative; flex:1 1 auto; min-width:0; height:4px; border-radius:10px; background:#263249; overflow:hidden; }
+#game_aim_trainer .progress-fill { position:absolute; inset:0; display:block; width:100%; height:100%; border-radius:inherit; transform:scaleX(1); transform-origin:left center; background:var(--cyan); transition:none; will-change:transform; }
+#game_aim_trainer .progress-fill.is-danger { background:#ff4d67; box-shadow:0 0 8px rgba(255,77,103,.65); }
+#game_aim_trainer .bottom-row { flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 4px; color:#91a4c5; font-size:11px; }
+#game_aim_trainer .tips-panel { display:flex; align-items:center; gap:8px; min-width:0; }
+#game_aim_trainer .panel-icon { color:var(--cyan); font-size:18px; }
+#game_aim_trainer .tips-panel h2 { margin:0; color:#dce7fa; font-size:10px; letter-spacing:1.2px; }
+#game_aim_trainer .tips-panel p { margin:1px 0 0; font-size:10px; }
+#game_aim_trainer .controls-panel { display:flex; align-items:center; gap:6px; white-space:nowrap; }
+#game_aim_trainer .controls-panel label { color:#b8c6df; }
+#game_aim_trainer select { max-width:100px; padding:4px 6px; border:1px solid #34445f; border-radius:4px; color:var(--text); background:#111a2b; font:inherit; }
+#game_aim_trainer .control-note { color:#7185a8; font-size:10px; }
+#game_aim_trainer .page-footer { display:flex; justify-content:space-between; gap:10px; color:#5f7191; font-size:8px; letter-spacing:1.3px; }
+@media (max-width:650px) {
+ #game_aim_trainer { height:780px; }
+ #game_aim_trainer .app { padding:10px; gap:8px; }
+ #game_aim_trainer .hero h1 { font-size:22px; }
+ #game_aim_trainer .intro { font-size:11px; }
+ #game_aim_trainer .hud { flex-basis:64px; }
+ #game_aim_trainer .hud-stat strong { font-size:19px; }
+ #game_aim_trainer .hud-label { font-size:8px; letter-spacing:1px; }
+ #game_aim_trainer .game-bar { padding:0 8px; }
+ #game_aim_trainer .game-hint { font-size:9px; }
+ #game_aim_trainer .bottom-row { align-items:flex-start; flex-direction:column; gap:5px; }
+ #game_aim_trainer .page-footer { display:none; }
+}
+

@@ -4,14 +4,14 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.1.0/firebase
 
 // 設定情報
 const firebaseConfig = {
-  apiKey: "AIzaSyBlAodi_xUgnJf2peykEMsgni8HhIGBwi0",
-  authDomain: "d114m0nd.firebaseapp.com",
-  projectId: "d114m0nd",
-  storageBucket: "d114m0nd.firebasestorage.app",
-  messagingSenderId: "275461877904",
-  appId: "1:275461877904:web:0466e477d3ee854cdde815",
-  measurementId: "G-29NWM6QGNJ"
-};
+    apiKey: "AIzaSyB4uKr8JjvWkwagqtGo6Nr5QKiGNzhBKrY",
+    authDomain: "d14m0nd.firebaseapp.com",
+    projectId: "d14m0nd",
+    storageBucket: "d14m0nd.firebasestorage.app",
+    messagingSenderId: "928444263353",
+    appId: "1:928444263353:web:a1f9f4fdcaec83d916a468",
+    measurementId: "G-80G94CEE0Z"
+  };
 
 // Firenaseの初期化
 const app = initializeApp(firebaseConfig);

@@ -1,0 +1,133 @@
+<div id="d14m0nd-banner-container">
+  <style>
+    /* 読み込み先の親ページに影響しないようスコープ化 */
+    #d14m0nd-banner-container {
+      width: 1000px;
+      height: 300px;
+      position: relative;
+      /* 背景画像の基本プロパティ（JavaScriptでURLをランダム動的設定） */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+
+    /* 黒背景フェード用オーバーレイ */
+    #d14m0nd-banner-container .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      z-index: 1;
+      /* 1秒かけて真っ黒から50%不透明の黒へアニメーション */
+      animation: d14m0nd-overlay-fade 1s ease-out forwards;
+      pointer-events: none; /* クリックイベントを透過 */
+    }
+
+    @keyframes d14m0nd-overlay-fade {
+      0% {
+        opacity: 1; /* 最初は完全な真っ黒 */
+      }
+      100% {
+        opacity: 0.5; /* 1秒後に50%の黒（背景画像が透ける状態） */
+      }
+    }
+
+    /* SVG（ロゴ）はオーバーレイの上に配置 */
+    #d14m0nd-banner-container svg {
+      width: 1000px;
+      height: 300px;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 各三角形の基本設定（平常時は白） */
+    #d14m0nd-banner-container .tri {
+      fill: #ffffff;
+      cursor: pointer;
+      transition: fill 0.2s ease;
+      transform-origin: center;
+      will-change: transform, fill;
+    }
+
+    /* 通常（非Float）時のホバー：薄い青 */
+    #d14m0nd-banner-container .tri:hover {
+      fill: #cee2fa;
+    }
+
+    /* Float動作中のクラス定義 */
+    #d14m0nd-banner-container .tri.floating {
+      animation: d14m0nd-float-anim 2s ease-in-out infinite alternate;
+    }
+
+    /* Float動作中のホバー：青 */
+    #d14m0nd-banner-container .tri.floating:hover {
+      fill: #9dc0f8;
+    }
+
+    /* 浮遊アニメーション */
+    @keyframes d14m0nd-float-anim {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+
+  <!-- 黒背景フェード演出用レイヤー -->
+  <div class="bg-overlay"></div>
+
+  <!-- SVGロゴレイヤー -->
+  <svg viewBox="0 0 1000 300">
+    <g id="d14m0nd-triangles-group">
+      <!-- 80%スケールの6つの逆三角形 -->
+      <polygon class="tri" id="d14m0nd-tri-0" points="388.00,53.03 452.00,53.03 420.00,108.45" style="animation-delay: 0.00s;"></polygon>
+      <polygon class="tri" id="d14m0nd-tri-1" points="468.00,53.03 532.00,53.03 500.00,108.45" style="animation-delay: 0.15s;"></polygon>
+      <polygon class="tri" id="d14m0nd-tri-2" points="548.00,53.03 612.00,53.03 580.00,108.45" style="animation-delay: 0.30s;"></polygon>
+      <polygon class="tri" id="d14m0nd-tri-3" points="428.00,122.31 492.00,122.31 460.00,177.73" style="animation-delay: 0.45s;"></polygon>
+      <polygon class="tri" id="d14m0nd-tri-4" points="508.00,122.31 572.00,122.31 540.00,177.73" style="animation-delay: 0.60s;"></polygon>
+      <polygon class="tri" id="d14m0nd-tri-5" points="468.00,191.59 532.00,191.59 500.00,247.01" style="animation-delay: 0.75s;"></polygon>
+    </g>
+  </svg>
+
+  <script>
+    (function() {
+      function initBanner() {
+        var container = document.getElementById('d14m0nd-banner-container');
+        if (!container) return;
+
+        // --- 1. 背景画像をランダムに設定 (bg_001.png ~ bg_006.png) ---
+        // 1〜6のランダム数値を生成
+        //var randomNum = Math.floor(Math.random() * 6) + 1;
+        // 2〜6のランダム数値を生成（仮運用のためbg_001.pngはテスト用なので除外）
+        var randomNum = Math.floor(Math.random() * 5) + 2;
+        // 3桁のゼロ埋め文字列 (001, 002, ... 006)
+        var numStr = String(randomNum).padStart(3, '0');
+        // 背景画像のURLを指定
+        var bgUrl = '/web/images/bg_' + numStr + '.png';
+        container.style.backgroundImage = "url('" + bgUrl + "')";
+
+        // --- 2. 各三角形へのクリックイベント（Floatトグル）を設定 ---
+        var triangles = container.querySelectorAll('.tri');
+        triangles.forEach(function(tri) {
+          tri.onclick = function() {
+            this.classList.toggle('floating');
+          };
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initBanner);
+      } else {
+        initBanner();
+      }
+    })();
+  </script>
+</div>

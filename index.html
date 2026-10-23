@@ -2,12 +2,13 @@
 <head>
 <meta charset="utf-8">
 <meta property="og:description" content="日本のゲーミングチーム「D14M0ND」のOfficialWebSiteです。 | This homepage is OfficialWebSite for D14M0ND. It's amateur e-sports team in Japan.">
-<link rel="icon" href="/favicon.ico">
+<link rel="icon" href="./favicon.ico">
 <link rel="stylesheet" type="text/css" href="./web/style.css">
 <script type="text/javascript" src="./web/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="./web/common.js"></script>
 <script type="text/javascript">
 	$(function(){ $("#index_top_menu").load("web/top_menu.html"); })
+	$(function(){ $("#index_top_banner").load("web/top_banner.html"); })
 	$(function(){ $("#index_newsbox").load("web/top_news.html"); })
 </script>
 
@@ -16,30 +17,6 @@
 </head>
 
 <body>
-<!-- Firebase -->
-<script type="module">
-  // Firebaseのプログラムを読み込む
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // 設定情報
-  const firebaseConfig = {
-    apiKey: "AIzaSyBlAodi_xUgnJf2peykEMsgni8HhIGBwi0",
-    authDomain: "d114m0nd.firebaseapp.com",
-    projectId: "d114m0nd",
-    storageBucket: "d114m0nd.firebasestorage.app",
-    messagingSenderId: "275461877904",
-    appId: "1:275461877904:web:0466e477d3ee854cdde815",
-    measurementId: "G-29NWM6QGNJ"
-  };
-
-  // Firenaseの初期化
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
 <div id="top_div">
 </div>
 
@@ -51,8 +28,11 @@
 	
 	<!-- MAIN_CONTENT -->
 	<div id="index_main_content">
-		<img id="index_header_image" src="web/images/index_header.jpg"></img>
-		
+		<!-- img id="index_header_image" src="web/images/index_header.jpg"></img-->
+
+		<div id="index_top_banner">
+		</div>
+
 		<!-- FirstBox -->
 		<div id="index_firstbox">
 			<h1 style="font-family: mplus-1p-black; ">

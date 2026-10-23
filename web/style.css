@@ -1,14 +1,14 @@
 @font-face {
 	font-family: 'mplus-1p-black';
-	src: url('./web/fonts/mplus-1p-black.woff') format('woff');
+	src: url('../web/fonts/mplus-1p-black.woff') format('woff');
 }
 @font-face {
 	font-family: 'mplus-1p-thin';
-	src: url('./web/fonts/mplus-1p-thin.woff') format('woff');
+	src: url('../web/fonts/mplus-1p-thin.woff') format('woff');
 }
 @font-face {
 	font-family: 'mplus-1p-regular';
-	src: url('./web/fonts/mplus-1p-regular.woff') format('woff');
+	src: url('../web/fonts/mplus-1p-regular.woff') format('woff');
 }
 body
 {

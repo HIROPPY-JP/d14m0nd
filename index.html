@@ -12,14 +12,6 @@
 
 <title>D14M0ND</title>
 
-<!-- script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-2937389616977753",
-    enable_page_level_ads: true
-  });
-</script -->
-
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178414490-1"></script>
 <script>
@@ -88,11 +80,6 @@
 			</div>
 		</div>
 		
-		<!-- Push7 -->
-		<div id="index_push7" style="position:absolute; top:1450px; left:30px;">
-			<div class="p7button" data-align="top" data-button-text="購読する"></div>
-		</div>
-		
 		<!-- Footer -->
 		<div id="index_footer">
 			<p style="margin-top: 8px;">(C) 2012-2026 D14M0ND<br/>
@@ -109,29 +96,7 @@
 	if(!access_count) access_count=0;
 	access_count++;
 	localStorage.setItem("D14M0ND_ACCESS_COUNT",access_count);
-	console.log(access_count+" view thx!");
-	
-	/*var sw=0;
-	function titleChange()
-	{
-		setTimeout(function(){
-				var mozi = "D14M0ND";
-				if(sw^=1)
-				{
-					mozi = "ダイヤモンド";
-				}
-				document.title = String(mozi);
-				titleChange();
-			},1000);
-	}
-	titleChange();*/
-	
-</script>
-
-
-<script src="https://sdk.push7.jp/v2/p7sdk.js"></script>
-<script>
-p7.init("17ad0a6559c94ef6aaaecaa7cf38b570");
+	console.log(`$access_count = {access_count}`);
 </script>
 
 </body>

@@ -111,7 +111,7 @@
         // 3桁のゼロ埋め文字列 (001, 002, ... 006)
         var numStr = String(randomNum).padStart(3, '0');
         // 背景画像のURLを指定
-        var bgUrl = '/web/images/bg_' + numStr + '.png';
+        var bgUrl = '../web/images/bg_' + numStr + '.png';
         container.style.backgroundImage = "url('" + bgUrl + "')";
 
         // --- 2. 各三角形へのクリックイベント（Floatトグル）を設定 ---
